@@ -37,6 +37,8 @@ class ExerciseImageServiceTests: XCTestCase {
                 expectation.fulfill()
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
        XCTAssertNotNil(expectedImage)
         XCTAssertEqual(expectedImage.id, 174)
     }
@@ -58,6 +60,8 @@ class ExerciseImageServiceTests: XCTestCase {
  
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedError)
         XCTAssertEqual(expectedError, NetworkError.invalidURL)
     }

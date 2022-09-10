@@ -29,6 +29,7 @@ class ExerciseInfoServiceTests: XCTestCase {
         // Given
         let expectation = self.expectation(description: "Load Exercises Info")
         var expectedItem: ExerciseInfoResponse!
+        
         // When
         sut.loadExerciseInfo(with: 174)
             .sink { completion in
@@ -37,6 +38,8 @@ class ExerciseInfoServiceTests: XCTestCase {
                 expectation.fulfill()
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedItem)
     }
     
@@ -45,6 +48,7 @@ class ExerciseInfoServiceTests: XCTestCase {
         let expectation = self.expectation(description: "Load Exercises Info")
         var expectedError: NetworkError!
         sut = .init(apiService: MockAPIService(fileName: "Wrong Name"))
+        
         // When
         sut.loadExerciseInfo(with: 174)
             .sink { completion in
@@ -56,6 +60,8 @@ class ExerciseInfoServiceTests: XCTestCase {
             } receiveValue: { _ in
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedError)
         XCTAssertEqual(expectedError, NetworkError.invalidURL)
     }

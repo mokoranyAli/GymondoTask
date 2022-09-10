@@ -26,9 +26,11 @@ class LoadExerciseImageUseCaseTests: XCTestCase {
     }
     
     func testSUT_whenExecuteWithSuccess_shouldGetImageWithURL() {
+        // Given
         let expectation = self.expectation(description: "Load Image Succssfully")
         var expectedResult: ExerciseImage!
         
+        // When
         sut.execute(id: 174)
             .sink { _ in }
     receiveValue: { item in
@@ -36,14 +38,18 @@ class LoadExerciseImageUseCaseTests: XCTestCase {
         expectation.fulfill()
     }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedResult.imageURL)
     }
     
     func testSUT_whenExecuteWithFailure_shouldGetError() {
+        // Given
         sut = .init(repository: MockFailureExerciseImageRepository())
         let expectation = self.expectation(description: "Load Image Error")
         var expectedError: NetworkError!
         
+        // When
         sut.execute(id: 174)
             .sink { completion in
                 if case let .failure(error) = completion {
@@ -54,6 +60,8 @@ class LoadExerciseImageUseCaseTests: XCTestCase {
     receiveValue: {_ in
     }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertEqual(expectedError, NetworkError.invalidResponse)
     }
 }

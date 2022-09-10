@@ -26,9 +26,11 @@ class LoadExercisesUseCaseTests: XCTestCase {
     }
     
     func testSUT_whenExecuteWithSuccess_shouldGetOneItemWith174ID() {
+        // Given
         let expectation = self.expectation(description: "Load Exercises Succssfully")
         var expectedResult: [Exercise]!
         
+        // When
         sut.execute()
             .sink { _ in }
     receiveValue: { items in
@@ -36,24 +38,31 @@ class LoadExercisesUseCaseTests: XCTestCase {
         expectation.fulfill()
     }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertEqual(expectedResult.first?.id, 174)
         XCTAssertEqual(expectedResult.count, 1)
     }
     
     func testSUT_whenExecuteWithFailure_shouldGetError() {
+        // Given
         sut = .init(repository: MockFailureExercisesListRepository())
         let expectation = self.expectation(description: "Load Exercises Error")
         var expectedError: NetworkError!
         
-        sut.execute().sink { completion in
-            if case let .failure(error) = completion {
-                expectedError = error as? NetworkError
-                expectation.fulfill()
+        // When
+        sut.execute()
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    expectedError = error as? NetworkError
+                    expectation.fulfill()
+                }
             }
-        }
     receiveValue: {_ in
     }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertEqual(expectedError, NetworkError.invalidResponse)
     }
 }

@@ -21,6 +21,7 @@ class ExerciseListRepositoryTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        cancellables.removeAll()
         super.tearDown()
     }
     
@@ -30,6 +31,7 @@ class ExerciseListRepositoryTests: XCTestCase {
         var expectedItems: [Exercise]!
         let expectedExerciseID = 174
         var realExerciseID: Int!
+        
         // When
         sut.loadExercises()
             .sink { completion in
@@ -39,6 +41,8 @@ class ExerciseListRepositoryTests: XCTestCase {
                 expectation.fulfill()
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertEqual(expectedItems.count, 1)
         XCTAssertEqual(realExerciseID, expectedExerciseID)
     }
@@ -48,6 +52,7 @@ class ExerciseListRepositoryTests: XCTestCase {
         let expectation = self.expectation(description: "Load Exercises")
         var expectedError: NetworkError!
         sut = .init(service: MockFailureExercisesListService())
+        
         // When
         sut.loadExercises()
             .sink { completion in
@@ -60,6 +65,8 @@ class ExerciseListRepositoryTests: XCTestCase {
                 
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedError)
         XCTAssertEqual(expectedError, .invalidResponse)
     }

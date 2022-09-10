@@ -21,6 +21,7 @@ class ExerciseImageRepositoryTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        cancellables.removeAll()
         super.tearDown()
     }
     
@@ -37,10 +38,12 @@ class ExerciseImageRepositoryTests: XCTestCase {
                 expectation.fulfill()
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedItem)
     }
     
-    func testSUT_whenFailToLoadDataL_shouldGetError() {
+    func testSUT_whenFailToLoadData_shouldGetError() {
         // Given
         let expectation = self.expectation(description: "Load Image")
         var expectedError: NetworkError!
@@ -56,6 +59,8 @@ class ExerciseImageRepositoryTests: XCTestCase {
                 
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedError)
         XCTAssertEqual(expectedError, .invalidResponse)
     }

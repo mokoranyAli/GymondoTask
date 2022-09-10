@@ -36,6 +36,8 @@ class ExerciseListServiceTests: XCTestCase {
                 expectedItems = list.results
                 expectation.fulfill()
             }.store(in: &cancellables)
+        
+        // Then
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(expectedItems.count, 20)
     }
@@ -57,6 +59,7 @@ class ExerciseListServiceTests: XCTestCase {
  
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        // Then
         XCTAssertNotNil(expectedError)
         XCTAssertEqual(expectedError, NetworkError.invalidURL)
     }

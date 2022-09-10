@@ -77,7 +77,6 @@ class ExerciseDetailsViewModelTests: XCTestCase {
             expectation.fulfill()
         }.store(in: &sut.cancellables)
         wait(for: [expectation], timeout: 1.0)
-        // When
         
         // Then
         XCTAssertEqual(expectedState, .failure(NetworkError.invalidResponse))
@@ -97,7 +96,6 @@ class ExerciseDetailsViewModelTests: XCTestCase {
             expectation.fulfill()
         }.store(in: &sut.cancellables)
         wait(for: [expectation], timeout: 1.0)
-        // When
         
         // Then
         XCTAssertNotNil(expectedItem)

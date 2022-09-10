@@ -21,6 +21,7 @@ class LoadExerciseInfoUseCaseTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        cancellables.removeAll()
         super.tearDown()
     }
     
@@ -37,6 +38,8 @@ class LoadExerciseInfoUseCaseTests: XCTestCase {
                 expectation.fulfill()
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertTrue(expectedItem.variations?.isNotEmpty ?? false)
         XCTAssertTrue(expectedItem.images?.isNotEmpty ?? false)
     }
@@ -46,6 +49,7 @@ class LoadExerciseInfoUseCaseTests: XCTestCase {
         let expectation = self.expectation(description: "Failure Loading Exercises")
         var expectedError: NetworkError!
         sut = .init(repository: MockFailureExerciseInfoRepository())
+        
         // When
         sut.execute(with: 174)
             .sink { completion in
@@ -58,6 +62,8 @@ class LoadExerciseInfoUseCaseTests: XCTestCase {
                 
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedError)
         XCTAssertEqual(expectedError, .invalidResponse)
     }

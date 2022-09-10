@@ -21,6 +21,7 @@ class ExerciseInfoRepositoryTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        cancellables.removeAll()
         super.tearDown()
     }
     
@@ -37,6 +38,8 @@ class ExerciseInfoRepositoryTests: XCTestCase {
                 expectation.fulfill()
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertTrue(expectedItem.variations?.isNotEmpty ?? false)
         XCTAssertTrue(expectedItem.images?.isNotEmpty ?? false)
     }
@@ -58,6 +61,8 @@ class ExerciseInfoRepositoryTests: XCTestCase {
                 
             }.store(in: &cancellables)
         wait(for: [expectation], timeout: 1.0)
+        
+        // Then
         XCTAssertNotNil(expectedError)
         XCTAssertEqual(expectedError, .invalidResponse)
     }

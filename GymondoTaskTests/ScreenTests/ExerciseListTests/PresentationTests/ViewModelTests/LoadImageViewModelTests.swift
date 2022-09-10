@@ -40,7 +40,6 @@ class LoadImageViewModelTests: XCTestCase {
         }.store(in: &sut.cancellables)
         wait(for: [expectation], timeout: 1.0)
        
-        
         // Then
         XCTAssertEqual(expectedState, .success)
     }
