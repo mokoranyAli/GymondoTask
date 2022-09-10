@@ -10,9 +10,11 @@ import UIKit
 class ExercisesListViewController: BaseViewController {
     
     // MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
+    
     weak var coordinator: ExerciseListCoordinatorProtocol?
     let viewModel: ExerciseListViewModel
     
@@ -26,6 +28,7 @@ class ExercisesListViewController: BaseViewController {
     }
     
     // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -35,6 +38,7 @@ class ExercisesListViewController: BaseViewController {
     }
     
     // MARK: - Handlers
+    
     private func setupOnReceiveNewData() {
         viewModel
             .$exercises
