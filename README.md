@@ -12,7 +12,7 @@
 
 ## Overview
 
-App to show exercies list and exery item in list has name and image if possible, then you can go to exercise details screen to see name of exercise, images of exercise if found and variations of exercises if found .. And if you select a variation you will go to variation details screen 
+App to show exercies list and exery item in list has name and image if possible, then you can go to exercise details screen to see name of exercise, images of exercise if found and variations of exercises if found .. And if you select a variation you will go to variation details screen.
 
 ## Networking
 
