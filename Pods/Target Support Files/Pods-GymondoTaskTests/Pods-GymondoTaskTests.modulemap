@@ -1,0 +1,6 @@
+framework module Pods_GymondoTaskTests {
+  umbrella header "Pods-GymondoTaskTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
