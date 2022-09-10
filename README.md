@@ -23,7 +23,7 @@ Netwroking applied in APIService file using just URLSession with dataTaskPublish
 
 Task is implemented using MVVM with clean architecture.
 Each entity has ViewModel, one use-case or more if needed, repository and service.
-*** All layers have unit tests ***
+***All layers have unit tests***
 
 ## UI
 
