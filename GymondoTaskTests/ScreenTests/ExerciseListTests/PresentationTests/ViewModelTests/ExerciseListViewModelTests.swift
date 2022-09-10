@@ -44,6 +44,25 @@ class ExerciseListViewModelTests: XCTestCase {
         XCTAssertEqual(expectedState, .success)
     }
     
+    func testSUT_whenExecuteWithSuccess_stateGetData() {
+        // Given
+        let expectation = self.expectation(description: "Loading Exercises Successfully")
+        var expectedResult: [Exercise]!
+        expectation.expectedFulfillmentCount = 2
+        
+        // When Init
+        
+        sut.$exercises.sink { items in
+            expectedResult = items
+            expectation.fulfill()
+        }.store(in: &sut.cancellables)
+        wait(for: [expectation], timeout: 1.0)
+       
+        
+        // Then
+        XCTAssertTrue(expectedResult.isNotEmpty)
+    }
+    
     func testSUT_whenExecuteFailure_stateShouldBeFailure() {
         // Given
         let expectation = self.expectation(description: "Failed Loading")
