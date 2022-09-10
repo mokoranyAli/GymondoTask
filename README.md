@@ -16,7 +16,7 @@ App to show exercies list and every item in list has name and image if possible,
 
 ## Networking
 
-Netwroking applied in APIService using just URLSession and dataTaskPublisher to return Combine Publisher.
+Netwroking applied in APIService file using just URLSession with dataTaskPublisher to return Combine Publisher.
 
 
 ## Architecture
