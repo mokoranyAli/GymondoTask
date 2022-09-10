@@ -1,0 +1,40 @@
+{
+    "id": 174,
+    "name": "Abduktoren-Maschine",
+    "uuid": "99881bdd-43d7-4c3b-82ed-9c187d0455b7",
+    "exercise_base_id": 12,
+    "description": "<ul>\n<li>in eine aufrechte Position setzen, bei der die Beine hüftbreit geöffnet sind</li>\n<li>den Rücken, die Knie und die Oberschenkelaußenseite an die jeweiligen Polster pressen</li>\n<li>mit den Händen an den Griffen festhalten</li>\n<li>die Oberschenkel bis zum Anschlagpunkt der Hebelarme auseinander drücken</li>\n<li>danach die Beine wieder zusammen führen</li>\n<li>das Gesäß nicht vom Sitz abheben</li>\n<li>beim Auseinanderdrücken der Hebelarme aus- und beim Zusammenführen einatmen</li>\n</ul>",
+    "creation_date": "2013-07-19",
+    "category": {
+        "id": 9,
+        "name": "Legs"
+    },
+    "muscles": [
+        {
+            "id": 8,
+            "name": "Gluteus maximus",
+            "name_en": "Glutes",
+            "is_front": false,
+            "image_url_main": "/static/images/muscles/main/muscle-8.svg",
+            "image_url_secondary": "/static/images/muscles/secondary/muscle-8.svg"
+        }
+    ],
+    "muscles_secondary": [],
+    "equipment": [],
+    "language": {
+        "id": 1,
+        "short_name": "de",
+        "full_name": "Deutsch"
+    },
+    "license": {
+        "id": 1,
+        "full_name": " Creative Commons Attribution Share Alike 3",
+        "short_name": "CC-BY-SA 3",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+    },
+    "license_author": "flori",
+    "images": [],
+    "videos": [],
+    "comments": [],
+    "variations": []
+}
